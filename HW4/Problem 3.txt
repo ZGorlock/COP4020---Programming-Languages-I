@@ -1,0 +1,37 @@
+Problem 3:
+----------
+
+a) Give 5 examples of Haskell classes (for instance, Eq).
+
+    Eq, Ord, Show, Read, Enum
+
+b) Give the signature of the functions (>>=) and return in the class definition of a monad. 
+
+    return :: Monad m => a -> m a
+    (>>=)  :: Monad m => m a -> (a -> m b) -> m b
+
+c) Give the kind of the type constructor Either and of the partially applied type constructor Either Int.
+
+    Either     :: * -> * -> *
+    Either Int :: * -> *
+
+d) Give the type of the functions zip and the partially applied function zip "abc".
+
+    zip       :: [a] -> [b] -> [(a, b)]
+    zip "abc" ::        [b] -> [(Char, b)]
+
+e) Give a definition of a higher-order function?
+
+    A function that takes other functions as arguments or returns a function as a result.
+
+f) What does it mean that a data structure is persistent?
+
+    Persistent data structures always preserve the previous version of itself when it is modified.
+
+g) Assume that ErrorType is some user defined type that describes errors that can occur in computations.
+How would you endow Either ErrorType with a monadic structure? Give the definition of return and (>>=). 
+
+    instance Monad Either ErrorType where
+
+    return :: (Either ErrorType) e => a -> e a
+    (>>=)  :: (Either ErrorType) e => e a -> (a -> e b) -> e b
